@@ -12,9 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Login to Heroku Container registry
-      run: heroku container:login
+      run: heroku login
     - name: Build and push
-      run: heroku container:push -a ctf-nfe-demo web
+      run: heroku push -a ctf-nfe-demo web
     - name: Release
-      run: heroku container:release -a ctf-nfe-demo web
-
+      run: heroku release -a ctf-nfe-demo web
