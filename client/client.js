@@ -11,12 +11,12 @@ class Client {
         this.game = new Game();
         this.pixi = new Pixi();
         this.engine = new Engine(this,1000/30);
-        
+
         // Client Properties
         this.dev_mode = false;
         this.mouse_client_pos = null;
         this.mouseMoveAlias = null;
-        
+
         // Web Sockets
         this.ready = false;
         this.socket = null;
@@ -34,7 +34,7 @@ class Client {
         window.addEventListener('keydown',this.handleEventKeyDown.bind(this));
         window.addEventListener('keyup',this.handleEventKeyUp.bind(this));
         window.addEventListener('mousedown',this.handleEventMouseDown.bind(this));
-        window.addEventListener('mouseup',this.handleEventMouseUp.bind(this)); 
+        window.addEventListener('mouseup',this.handleEventMouseUp.bind(this));
         window.addEventListener('paste',this.handleEventPaste.bind(this));
         window.addEventListener('resize',this.handleEventResize.bind(this));
     }
@@ -57,7 +57,7 @@ class Client {
         this.controller.onMouseDown(event);
         window.addEventListener('mousemove',this.mouseMoveAlias);
     }
-    
+
     handleEventMouseMove (event) {
         this.updateClientMousePosition(event);
     }
@@ -163,13 +163,13 @@ class Client {
             input_data.g = true;
         if (this.controller.keyPressed('Shift') === true)
             input_data.shift = true;
-        if (this.controller.mousePressed('MouseLeft')) 
+        if (this.controller.mousePressed('MouseLeft'))
             input_data.mouseLeft = true;
         if (this.controller.mousePressed('MouseRight'))
             input_data.mouseRight = true;
         if (this.mouseMoveAlias !== null)
             input_data.mouse_game_pos = this.getMouseGamePosition();
-        
+
         if (Object.keys(input_data).length > 1)
             this.game.input_queue.push(input_data);
     }
@@ -238,7 +238,7 @@ class Client {
             this.pixi.aspect_ratio = 4/3;
         this.resizeCanvas();
     }
-    
+
     updateClientMousePosition (event) {
         this.mouse_client_pos = {x:event.pageX,y:event.pageY};
     }
@@ -284,8 +284,8 @@ class Client {
     }
 
     turnOnDevMode () {
-        //this.toggleColliderGraphics('0x00FF00');
-        //this.toggleGridGraphics('0xFF0000');
+        this.toggleColliderGraphics('0x00FF00');
+        this.toggleGridGraphics('0xFF0000');
         this.showMouseInfo();
     }
 }
